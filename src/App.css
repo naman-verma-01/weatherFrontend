@@ -1,6 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
 .leaflet-container{
-  height: 200px;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  z-index: 1;
+}
+
+
+.weatherInfoBox{
+  margin: 40px;
+  padding: 20px;
+  position:absolute;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px -5px black;
+  text-align: center;
+  height: 50vh;
   width: 25vw;
-  box-shadow: 1px 1px 10px 1px black;
-  border-radius: 20px;
+  right: 0;
+  top: 0;
+
+}
+
+.mescContainer{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.mescContainer div{
+  padding: 10px;
+}
+
+.mescContainer div:first-child{
+  border-right: 1px solid rgba(53, 53, 53, 0.8);
 }
