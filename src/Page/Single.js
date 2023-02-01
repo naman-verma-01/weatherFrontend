@@ -6,6 +6,7 @@ import { TileLayer } from 'react-leaflet/TileLayer'
 import { useMap } from 'react-leaflet/hooks'
 import { Marker, Popup } from 'react-leaflet'
 import WeatherInfoBox from '../Component/WeatherInfoBox';
+import Navbar from '../Component/Navbar'
 function Single() {
     const [data, setData] = useState()
     const apiData = useSelector((state) => state.api_data.data);
@@ -23,6 +24,7 @@ function Single() {
 
     return (
         <div>
+            <Navbar />
             {data ? <div>
                 
                 <WeatherInfoBox data={data}/>

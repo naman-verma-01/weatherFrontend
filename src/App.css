@@ -6,7 +6,20 @@
 
 body{
   font-family: 'Montserrat', sans-serif;
+  background: #252525;
+  background-image: url(https://e0.pxfuel.com/wallpapers/551/728/desktop-wallpaper-black-landscape-in-2020-minimalist-minimal-black.jpg);
+  background-size: cover;
 }
+
+a{
+  all:unset;
+}
+
+a:hover{
+  all:unset;
+  cursor: pointer;
+}
+
 .leaflet-container{
   height: 100vh;
   width: 100vw;
@@ -30,13 +43,37 @@ body{
   text-align: center;
   width: 25vw;
   right: 0;
-  top: 0;
+  top: 25px;
 
 }
 
 @media screen and (max-width: 800px) {
   .weatherInfoBox{
-    width:auto
+    width:auto;
+    font-size: 1;
+    padding: 10px;
+    margin: 10px;
+    top: 55px;
+  }
+  .weatherInfoBox h4{
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+  }
+  .weatherInfoBox h5{
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+  }
+  .weatherInfoBox h1{
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .weatherInfoBox div{
+    padding: 0;
+    margin: 0;
   }
 }
 .mescContainer{
@@ -94,7 +131,6 @@ body{
 }
 
 body{
-  background: #252525;
 }
 
 .cityMenu{
@@ -116,6 +152,11 @@ body{
   display: flex;
   justify-content: space-between;
   
+}
+
+.cityCard:hover{
+  background-color: rgba(47, 47, 47, 0.25);
+
 }
 
 @media screen and (max-width: 1000px) {

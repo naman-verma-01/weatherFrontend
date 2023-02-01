@@ -7,6 +7,8 @@ import { SET_API_DATA } from '../Reducers/types';
 import Navbar from '../Component/Navbar'
 import WeatherInfoBoxHome from '../Component/WeatherInfoBoxHome';
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 function Home() {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
@@ -113,17 +115,20 @@ function Home() {
 
 
             {delhiData ? <WeatherInfoBoxHome data={delhiData} /> : null}
-            <div className='cityMenu'>
-            {!loading ? data.map((element) => {
-                return <CityCard element={element} />
-            }) : <>Loading...</>}
-            </div>
-          
             <div className='pageControler'>
                 <div onClick={prevPage}>Prev</div>
                 <div>Page: {page}</div>
                 <div onClick={nextPage}>Next</div>
             </div>
+            <div className='cityMenu'>
+            {!loading ? data.map((element) => {
+                return <CityCard element={element} />
+            }) : <></>}
+            </div>
+
+            {loading?<Skeleton style={{height:"10vh",width:"50vw",left:"25%", margin:'10px'}} count={2}/>:null}
+          
+          
 
             <div id='check'></div>
         </div>
