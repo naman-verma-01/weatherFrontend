@@ -38,6 +38,12 @@ function Single() {
                             {data.name} <br/> {Math.floor(data.main.temp - 273)}  &#176;C
                         </Popup>
                     </Marker>
+
+                    <Marker position={[data.coord.lat , data.coord.lon + 1]}>
+                        <Popup>
+                            {data.name} <br/> {Math.floor(data.main.temp - 273)}  &#176;C
+                        </Popup>
+                    </Marker>
                 </MapContainer>
 
                 </div> 

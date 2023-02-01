@@ -28,13 +28,17 @@ body{
   border-radius: 15px;
   box-shadow: 1px 1px 10px -5px black;
   text-align: center;
-  height: 50vh;
   width: 25vw;
   right: 0;
   top: 0;
 
 }
 
+@media screen and (max-width: 800px) {
+  .weatherInfoBox{
+    width:auto
+  }
+}
 .mescContainer{
   display: flex;
   justify-content: center;
@@ -47,4 +51,99 @@ body{
 
 .mescContainer div:first-child{
   border-right: 1px solid rgba(53, 53, 53, 0.8);
+}
+
+.weatherInfoBoxHome{
+  margin: 40px;
+  padding: 20px;
+  position:relative;
+  z-index: 100;
+  background: rgba(90, 90, 90, 0.25);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px -5px black;
+  text-align: center;
+  width: 30vw;
+  left: 34%;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .weatherInfoBoxHome{
+    width: 80vw;
+    left: 1%;
+  }
+}
+
+
+.pageControler{
+  display: flex;
+  justify-content: space-around;
+  margin-left:30vw;
+  margin-right:30vw;
+  background-color: #343a40;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.pageControler div{
+  cursor: pointer;
+  
+}
+
+body{
+  background: #252525;
+}
+
+.cityMenu{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 10px;
+
+}
+
+.cityCard{
+  width: 30vw;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(90, 90, 90, 0.25);
+  border-radius: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+@media screen and (max-width: 1000px) {
+  .cityMenu{
+    margin: 5px;
+  }
+  .cityCard{
+    width: 30vw;
+    margin: 5px;
+    display: block;
+  }
+  .cityCard div{
+    margin: 20px;
+    
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .cityMenu{
+    margin: 10px;
+  }
+  .cityCard{
+    width: 45vw;
+    margin: 5px;
+    display: block;
+  }
+  .cityCard div{
+    margin: 20px;
+    
+  }
 }

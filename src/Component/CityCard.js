@@ -13,13 +13,28 @@ function CityCard(props) {
         console.log(toggle)
     }
     return (
-        <div >
-            <div onClick={toggleFunc}>
-            {props.element.name}<br />
-            <Link to={`single/${props.element.name}`}> Single</Link>
+        <Link to={`single/${props.element.name}`}>
+            <div className='cityCard'>
+                <div>
+                    <img height={"40px"} src={`https://openweathermap.org/img/w/${props.element.weather[0].icon}.png`} /><br />
+                    <h5>{props.element.name}</h5>
+                </div>
+                <div>
+                    Temp. &nbsp;{Math.floor(props.element.main.temp - 273)} &#176;C <br/>
+                    Wind &nbsp;{props.element.wind.speed} &#176;C
+                </div>
+                <div>
+                    {props.element.weather[0].main} <br/>
+                    {props.element.weather[0].description}
+                </div>
+                <div>
+
+                </div>
+
+
+
             </div>
-            {toggle ? null : null}
-        </div>
+        </Link>
 
     )
 }

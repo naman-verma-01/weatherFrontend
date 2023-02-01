@@ -4,43 +4,75 @@ import { useEffect, useState } from 'react';
 import CityCard from '../Component/CityCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_API_DATA } from '../Reducers/types';
+import Navbar from '../Component/Navbar'
+import WeatherInfoBoxHome from '../Component/WeatherInfoBoxHome';
+import Skeleton from 'react-loading-skeleton'
 function Home() {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [oldPage, setOldPage] = useState(1)
+    const [delhiData, setDelhiData] = useState()
     const dispatch = useDispatch()
     const apiData = useSelector((state) => state.api_data.data);
 
     useEffect(() => {
+
         console.log("API DATA", apiData)
         if (apiData.length != 0 && oldPage == page) {
-            //console.log("CHECK", apiData == [],oldPage == page,apiData.length != 0)
+
             console.log("here2")
 
             setData(apiData)
             setLoading(false)
+            getDelhiData()
         }
         else {
+
             console.log("here")
             setLoading(true)
             getData(page)
+            getDelhiData()
+
+
         }
 
     }, [page])
 
-
+    /*  setTimeout(() => {
+          document.getElementById('check').innerHTML += '-'
+         //setPage(page)
+          //getData(page)
+      }, 1000);
+  */
     useEffect(() => {
-        if (apiData.length != 0) {
-            //console.log("CHECK", apiData == [],oldPage == page,apiData.length != 0)
-            //console.log("here2")
+        const interval = setInterval(() => {
+            console.log("here time")
+            setLoading(true)
+            getData(page)
+            //document.getElementById('check').innerHTML += '-'
 
-            setData(apiData)
-            setLoading(false)
-        }
-    }, [apiData])
+        }, 300000);
 
+        return () => clearInterval(interval);
+    }, []);
 
+    //useEffect(() => {
+    //    if (apiData.length != 0) {
+    //
+    //        setData(apiData)
+    //        setLoading(false)
+    //    }
+    //}, [apiData])
+
+    const getDelhiData = async (response) => {
+        let delhiData = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=75e690174fd07fac7c35957677b8d494')
+        delhiData = await delhiData.json()
+
+        console.log("delhiData", delhiData)
+        setDelhiData(delhiData)
+
+    }
     const getListCallback = async (response) => {
         response = await response.json()
         console.log("response", response)
@@ -48,6 +80,8 @@ function Home() {
         // setData(response.data)
         //setLoading(false)
         dispatch({ type: SET_API_DATA, payload: { data: response.data } });
+        setData(response.data)
+        setLoading(false)
 
     }
     const getData = (page) => {
@@ -69,14 +103,29 @@ function Home() {
         }
     }
 
+    useEffect(() => {
+        //  getDelhiData()
+    })
+    //
     return (
         <div >
+            <Navbar />
+
+
+            {delhiData ? <WeatherInfoBoxHome data={delhiData} /> : null}
+            <div className='cityMenu'>
             {!loading ? data.map((element) => {
                 return <CityCard element={element} />
             }) : <>Loading...</>}
-            <div onClick={prevPage}>Prev</div>
-            <div>Page: {page}</div>
-            <div onClick={nextPage}>Next</div>
+            </div>
+          
+            <div className='pageControler'>
+                <div onClick={prevPage}>Prev</div>
+                <div>Page: {page}</div>
+                <div onClick={nextPage}>Next</div>
+            </div>
+
+            <div id='check'></div>
         </div>
     );
 }
