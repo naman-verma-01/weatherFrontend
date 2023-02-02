@@ -117,8 +117,8 @@ function Home() {
             {delhiData ? <WeatherInfoBoxHome data={delhiData} /> : null}
             <div className='pageControler'>
                 <div onClick={prevPage}>Prev</div>
-                <div>Page: {page}</div>
-                <div onClick={nextPage}>Next</div>
+                <div >Page: {page}</div>
+                <div  onClick={nextPage}>Next</div>
             </div>
             <div className='cityMenu'>
             {!loading ? data.map((element) => {

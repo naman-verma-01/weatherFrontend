@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
-import { useMap } from 'react-leaflet/hooks'
 import { Marker, Popup } from 'react-leaflet'
 import WeatherInfoBox from '../Component/WeatherInfoBox';
 import Navbar from '../Component/Navbar'
@@ -26,8 +25,8 @@ function Single() {
         <div>
             <Navbar />
             {data ? <div>
-                
-                <WeatherInfoBox data={data}/>
+
+                <WeatherInfoBox data={data} />
 
                 <MapContainer center={[data.coord.lat, data.coord.lon]} zoom={12} scrollWheelZoom={false}>
 
@@ -35,21 +34,35 @@ function Single() {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
+          
+
                     <Marker position={[data.coord.lat, data.coord.lon]}>
                         <Popup>
-                            {data.name} <br/> {Math.floor(data.main.temp - 273)}  &#176;C
-                        </Popup>
-                    </Marker>
+                            <h1>{data.name}</h1>
+                            
+                            
+                            
+                            <h2>{Math.floor(data.main.temp - 273)}  &#176;C</h2>
+                            
+                            
+                            <div className='mescContainer' >
+                                <div style={{ border: "0" }}>
+                                    <h5>Temp Min. {Math.floor(data.main.temp_min - 273)}&#176;C</h5>
+                                </div>
+                                <div>
+                                    <h5>Temp Max. {Math.floor(data.main.temp_max - 273)}&#176;C</h5>
 
-                    <Marker position={[data.coord.lat , data.coord.lon + 1]}>
-                        <Popup>
-                            {data.name} <br/> {Math.floor(data.main.temp - 273)}  &#176;C
+                                </div>
+                            </div>
+                            <br />
+                            
+
                         </Popup>
                     </Marker>
                 </MapContainer>
 
-                </div> 
-            : null}
+            </div>
+                : null}
         </div>
     )
 }
